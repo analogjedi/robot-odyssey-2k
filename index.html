@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Robot Odyssey 2K</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <div id="wrap">
+    <canvas id="game" width="960" height="640"></canvas>
+
+    <div id="menu" class="overlay hidden">
+      <h1>ROBOT ODYSSEY <span>2K</span></h1>
+      <p class="tag">escape the megafab · one logic gate at a time</p>
+      <div class="menu-btns">
+        <button id="btn-new">▸ New game</button>
+        <button id="btn-continue" class="hidden">▸ Continue</button>
+        <button id="btn-sandbox">▸ Innovation lab (sandbox)</button>
+        <button id="btn-howto">▸ How to play</button>
+        <button id="btn-codex">▸ Engineer's codex</button>
+      </div>
+      <p class="credit">a modern tribute to Robot Odyssey (1984) — wire sensors to motors,
+        burn your own chips, teach humanoid robots to think</p>
+    </div>
+
+    <div id="modal" class="overlay hidden"><div id="modal-content"></div></div>
+    <div id="inspector" class="hidden"></div>
+    <div id="toast"></div>
+  </div>
+  <script type="module" src="src/main.js"></script>
+</body>
+</html>

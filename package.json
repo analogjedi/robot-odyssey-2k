@@ -1,0 +1,11 @@
+{
+  "name": "robot-odyssey-2k",
+  "version": "1.0.0",
+  "description": "A modern browser reimagining of the classic Robot Odyssey: wire logic circuits, burn custom chips, and program humanoid robots to escape the Helios Semiconductor megafab.",
+  "type": "module",
+  "scripts": {
+    "start": "node server.mjs",
+    "test": "node test/game.test.mjs && node test/solvability.test.mjs && node test/boot.test.mjs"
+  },
+  "license": "MIT"
+}
