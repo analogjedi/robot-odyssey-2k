@@ -371,7 +371,7 @@ export class Editor {
       ctx.stroke();
       const labels = pin.kind === 'in' ? def.inLabels : def.outLabels;
       if (labels && labels[pin.pin]) {
-        ctx.fillStyle = '#94a3b8';
+        ctx.fillStyle = '#bccadf';
         ctx.font = '8px monospace';
         ctx.textAlign = pin.kind === 'in' ? 'left' : 'right';
         ctx.fillText(labels[pin.pin], pin.x + (pin.kind === 'in' ? 7 : -7), pin.y + 3);
@@ -391,12 +391,12 @@ export class Editor {
     const hov = this.hover && (this.hover.part || this.hover);
     if (hov && hov.type) {
       ctx.font = '10px monospace';
-      ctx.fillStyle = '#94a3b8';
+      ctx.fillStyle = '#bccadf';
       const d = partDef(hov).desc || '';
       ctx.fillText(d.slice(0, 78) + (d.length > 78 ? '…' : ''), 12, 34);
     } else {
       ctx.font = '10px monospace';
-      ctx.fillStyle = '#475569';
+      ctx.fillStyle = '#9db1d1';
       ctx.fillText('click a palette part then a board cell · drag pin→pin to wire · right-click deletes', 12, 34);
     }
 
@@ -406,7 +406,7 @@ export class Editor {
       ctx.fill();
       ctx.strokeStyle = '#33507a';
       ctx.stroke();
-      ctx.fillStyle = '#cbd5e1';
+      ctx.fillStyle = '#e2e8f0';
       ctx.font = '10px monospace';
       ctx.textAlign = 'center';
       ctx.fillText(b.label, b.x + b.w / 2, 23);
@@ -431,7 +431,7 @@ export class Editor {
       ctx.fillText(label, it.x + it.w / 2, it.y + 15);
     }
     if (!this.game.customChips.length) {
-      ctx.fillStyle = '#334155';
+      ctx.fillStyle = '#8aa0c4';
       ctx.font = '9px monospace';
       ctx.textAlign = 'left';
       ctx.fillText('burned chips appear here ▴ place PIN▸/▸PIN pads + logic, then BURN CHIP', 8, PAL_Y + 44);

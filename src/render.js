@@ -207,7 +207,7 @@ function drawRobot(ctx, r, world, occupied) {
 
   ctx.font = '10px monospace';
   ctx.textAlign = 'center';
-  ctx.fillStyle = occupied ? '#fde68a' : 'rgba(226,232,240,0.75)';
+  ctx.fillStyle = occupied ? '#fde68a' : 'rgba(226,232,240,0.9)';
   ctx.fillText(occupied ? `${r.name} ◂you▸` : r.name, x + r.w / 2, y + r.h + 12);
 }
 
@@ -241,8 +241,8 @@ function drawHud(ctx, game) {
   ctx.font = 'bold 13px monospace';
   ctx.fillStyle = '#7dd3fc';
   ctx.fillText(w.level.name, 12, 18);
-  ctx.font = '10px monospace';
-  ctx.fillStyle = '#64748b';
+  ctx.font = '11px monospace';
+  ctx.fillStyle = '#9db1d1';
   ctx.fillText(w.level.objective || '', 12, 33);
 
   ctx.textAlign = 'right';
@@ -254,7 +254,7 @@ function drawHud(ctx, game) {
     ctx.fillStyle = '#facc15';
     ctx.fillText('⚿ keycard', 640, 33);
   }
-  ctx.fillStyle = '#475569';
+  ctx.fillStyle = '#9db1d1';
   ctx.font = '11px monospace';
   ctx.fillText('[E]nter  [H]int  [C]odex  [M]enu  [⇧R]eset', 948, 18);
   ctx.fillText('move: WASD / arrows', 948, 33);
