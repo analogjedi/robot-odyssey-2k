@@ -351,11 +351,13 @@ export class Editor {
     ctx.font = 'bold 9px monospace';
     ctx.textAlign = 'center';
     const label = partLabel(p);
-    if (label.length > 5 && r.h > CS) {
-      ctx.fillText(label.slice(0, 6), r.x + r.w / 2, r.y + r.h / 2 - 2);
-      ctx.fillText(label.slice(6), r.x + r.w / 2, r.y + r.h / 2 + 8);
+    // parts with named pins get their label at the top, clear of the pin text
+    const labelY = (def.inLabels || def.outLabels) ? r.y + 10 : r.y + r.h / 2 + 3;
+    if (label.length > 6 && r.h > CS) {
+      ctx.fillText(label.slice(0, 6), r.x + r.w / 2, labelY);
+      ctx.fillText(label.slice(6), r.x + r.w / 2, labelY + 10);
     } else {
-      ctx.fillText(label.slice(0, 6), r.x + r.w / 2, r.y + r.h / 2 + 3);
+      ctx.fillText(label.slice(0, 6), r.x + r.w / 2, labelY);
     }
 
     // pins

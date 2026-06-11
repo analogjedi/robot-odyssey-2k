@@ -212,7 +212,26 @@ export class World {
     const sx = dx / steps, sy = dy / steps;
     for (let i = 0; i < steps; i++) {
       if (!this.rectBlocked(p.x + sx, p.y, p.w, p.h, 'player')) p.x += sx;
+      else if (sx) this.cornerAssist(sx, 0);
       if (!this.rectBlocked(p.x, p.y + sy, p.w, p.h, 'player')) p.y += sy;
+      else if (sy) this.cornerAssist(0, sy);
+    }
+  }
+
+  // When walking into the edge of a 1-tile gap (e.g. a door), slide the player
+  // sideways toward the opening instead of stopping dead.
+  cornerAssist(sx, sy) {
+    const p = this.player;
+    for (let r = 2; r <= 16; r += 2) {
+      for (const off of [-1, 1]) {
+        const ox = sy ? off * r : 0, oy = sx ? off * r : 0;
+        if (!this.rectBlocked(p.x + sx + ox, p.y + sy + oy, p.w, p.h, 'player') &&
+            !this.rectBlocked(p.x + Math.sign(ox), p.y + Math.sign(oy), p.w, p.h, 'player')) {
+          p.x += Math.sign(ox);
+          p.y += Math.sign(oy);
+          return;
+        }
+      }
     }
   }
 

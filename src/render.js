@@ -249,14 +249,14 @@ function drawHud(ctx, game) {
   ctx.font = '12px monospace';
   ctx.fillStyle = '#67e8f9';
   const need = w.level.crystals || 0;
-  ctx.fillText(`✦ ${w.player.crystals}${need ? '/' + need : ''}`, 700, 18);
+  ctx.fillText(`✦ ${w.player.crystals}${need ? '/' + need : ''}`, 640, 18);
   if (w.player.keycard) {
     ctx.fillStyle = '#facc15';
-    ctx.fillText('⚿ keycard', 700, 33);
+    ctx.fillText('⚿ keycard', 640, 33);
   }
   ctx.fillStyle = '#475569';
   ctx.font = '11px monospace';
-  ctx.fillText('[E]nter robot  [H]int  [C]odex  [M]enu  [shift+R]eset', 948, 18);
+  ctx.fillText('[E]nter  [H]int  [C]odex  [M]enu  [⇧R]eset', 948, 18);
   ctx.fillText('move: WASD / arrows', 948, 33);
 }
 

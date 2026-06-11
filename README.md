@@ -13,6 +13,13 @@ and escape sector by sector.
 ![genre](https://img.shields.io/badge/genre-logic%20puzzle-22d3ee)
 ![deps](https://img.shields.io/badge/dependencies-zero-4ade80)
 
+| | |
+|---|---|
+| ![the circuit bench inside AXIOM](docs/screenshots/2-circuit-bench.png) | ![Sector 02: two robots vs. an AND-interlocked door](docs/screenshots/3-logic-foundry.png) |
+| *the live circuit bench inside a robot* | *Sector 02: two robots vs. an AND interlock* |
+| ![Sector 01: AXIOM drives the vent](docs/screenshots/1-world-sector01.png) | ![Sector 04: a wired follow-policy tracks the player](docs/screenshots/4-ai-wing-follow.png) |
+| *Sector 01: AXIOM drives the service vent* | *Sector 04: a scanner→thruster follow policy* |
+
 ## Play
 
 ```bash
@@ -76,10 +83,18 @@ part to tune it. Progress, circuits and burned chips autosave to localStorage.
 ## Development
 
 ```bash
-npm test    # 27 headless tests: gate semantics, chip fab round-trips,
-            # map integrity, and full end-to-end solvability simulations
-            # of every campaign sector (robots actually drive the mazes)
+npm test    # 34 headless tests: gate semantics, chip fab round-trips,
+            # map integrity, full end-to-end solvability simulations of
+            # every campaign sector (robots actually drive the mazes),
+            # and a DOM-stub boot/interaction smoke test
+
+# regenerate the README screenshots (renders the real game via node-canvas):
+npm i --no-save canvas && node scripts/screenshot.mjs
 ```
+
+Pushes to `main` deploy to GitHub Pages automatically (enable Pages with
+source "GitHub Actions" in the repo settings); CI runs the test suite on
+every push.
 
 The circuit core (`src/circuit.js`) and world simulation (`src/world.js`) are
 DOM-free, so the entire game logic runs under plain Node.

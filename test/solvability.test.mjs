@@ -72,13 +72,7 @@ test('SECTOR 04: scanner-follow robot tracks a scripted player onto the plate', 
     const input = new Set();
     const ty = Math.floor((p.y + p.h / 2) / 32), tx = Math.floor((p.x + p.w / 2) / 32);
     if (tx <= 4 && ty > 3) input.add('up');
-    else {
-      input.add('right');
-      // line up with the door gap in row 3 before squeezing through
-      const targetY = 3 * 32 + 5;
-      if (tx >= 23 && p.y > targetY + 2) input.add('up');
-      else if (tx >= 23 && p.y < targetY - 2) input.add('down');
-    }
+    else input.add('right'); // corner assist squeezes through the door gap
     w.update(input);
   }
   assert.ok(w.pressed.has('a'), 'VECTOR should be parked on plate a');
@@ -97,6 +91,18 @@ test('SECTOR 05: two-stage pipeline opens the final interlock', () => {
   assert.ok(w.doors.B.open, 'door B should open from plate a');
   assert.ok(w.pressed.has('b'), 'VECTOR should roll through B onto plate b');
   assert.ok(w.doors.A.open, 'final door A should be open');
+});
+
+test('corner assist: a misaligned player slides through a 1-tile door gap', () => {
+  const w = new World(LEVELS[0], stubGame());
+  // hold plate a down with a phantom item so door A stays open
+  w.items.push({ id: 'tst', type: 'crystal', x: 28 * 32 + 16, y: 10 * 32 + 16, heldBy: null });
+  const p = w.player;
+  // park the player just west of door A (13,5), straddling rows 5/6
+  p.x = 11 * 32 + 5;
+  p.y = 5 * 32 + 14;
+  for (let i = 0; i < 60 * 5; i++) w.update(new Set(['right']));
+  assert.ok(p.x > 14 * 32, `player should pass the door (x=${Math.round(p.x)})`);
 });
 
 test('radio: TX on one robot raises RX on another (same channel)', () => {
